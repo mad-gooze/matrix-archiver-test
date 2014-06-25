@@ -81,8 +81,7 @@ for file in os.listdir("tests"):
 
 	if os.path.isfile(TMP_FILE_ARC):
 		os.remove(TMP_FILE_ARC)
-        if os.path.isfile(TMP_FILE):
-		os.remove(TMP_FILE)
+        os.remove(TMP_FILE_ARC)
                 
 print "============================="
 print "Passed tests: " + str(passed_tests) + "/" + str(test_num);
