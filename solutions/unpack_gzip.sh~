@@ -1,3 +1,0 @@
-#!/bin/bash
-
-gzip $1 -c -d > $2
