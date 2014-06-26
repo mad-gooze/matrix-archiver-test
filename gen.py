@@ -15,16 +15,21 @@ MATRIX_INT_MAX = 10000
 
 print("Test matrix generator script for AESC Summer School Contest")
 
+
 def random_size():
     return numpy.random.randint(MIN_MATRIX_SIZE, MAX_MATRIX_SIZE + 1)
 
+
 def gen_random(N):
-    matrix = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N, N))
-    return matrix
+    return numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX,
+                                        size=(N, N))
+
 
 def gen_diagonal(N):
-    diagonal = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N))
+    diagonal = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX,
+                                            size=(N))
     return numpy.diag(diagonal)
+
 
 def gen_triangular(N):
     matrix = gen_random(N)
@@ -33,27 +38,32 @@ def gen_triangular(N):
     else:
         return numpy.tril(matrix)
 
+
 def gen_symmetric(N):
-    matrix = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N, N))
+    matrix = gen_random(N)
     matrix = (matrix + matrix.T)/2
     return matrix
 
+
 def gen_skew_symmetric(N):
-    matrix = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N, N))
+    matrix = gen_random(N)
     matrix = numpy.triu(matrix)
     matrix = matrix - matrix.T
     return matrix
 
+
 def gen_sparse(N):
-    matrix = numpy.zeros(shape = (N, N))
+    matrix = numpy.zeros(shape=(N, N))
     for index in numpy.ndenumerate(matrix):
-        if numpy.random.choice([True, False], p = [0.1, 0.9]):
-            matrix[index[0]] = numpy.random.randint(MATRIX_INT_MIN, MATRIX_INT_MAX + 1)
+        if numpy.random.choice([True, False], p=[0.1, 0.9]):
+            matrix[index[0]] = numpy.random.randint(MATRIX_INT_MIN,
+                                                    MATRIX_INT_MAX + 1)
     return matrix
 
+
 def gen_toeplitz(N):
-    c = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N))
-    r = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size = (N))
+    c = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size=(N))
+    r = numpy.random.random_integers(MATRIX_INT_MIN, MATRIX_INT_MAX, size=(N))
     # from scipy.linalg.toeplitz
     c = numpy.asarray(c).ravel()
     if r is None:
@@ -69,6 +79,7 @@ def gen_toeplitz(N):
     # that `vals[indx]` is the Toeplitz matrix.
     return vals[indx]
 
+
 def save_matrix(matrix, filename):
     with open(os.path.join(TESTS_DIR, filename), 'w') as file:
         print(matrix.shape[0], file=file)
@@ -83,7 +94,7 @@ if len(sys.argv) < 2:
 
 N = int(sys.argv[1])
 
-shutil.rmtree(TESTS_DIR, ignore_errors = True)
+shutil.rmtree(TESTS_DIR, ignore_errors=True)
 os.mkdir(TESTS_DIR)
 
 generators = {
