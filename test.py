@@ -78,7 +78,7 @@ for file in os.listdir("tests"):
             original_size = os.stat(testfile).st_size
             archived_size = os.stat(TMP_FILE_ARC).st_size
             compression = archived_size / original_size * 100
-            print("[PASS] Compression: {:.3}%".format(compression))
+            print("[PASS] Compression: {:.3g}%".format(compression))
             test_size += original_size
             arc_size += archived_size
             passed_tests += 1
@@ -95,4 +95,4 @@ if passed_tests != 0:
     print("Original size: ", test_size)
     print("Archived size: ", arc_size)
     compression = arc_size / test_size * 100
-    print("Summary compression: {:.3}%".format(compression))
+    print("Summary compression: {:.3g}%".format(compression))
