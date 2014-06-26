@@ -58,7 +58,7 @@ for file in os.listdir("tests"):
     test_num += 1
     testfile = os.path.join("tests", file)
 
-    print("Testing file {}".format(testfile if show_file_names else test_num))
+    print("Testing file {}: ".format(testfile if show_file_names else test_num), end='')
 
     archive = Command(pack + " " + testfile + " " + TMP_FILE_ARC)
     dearchive = Command(unpack + " " + TMP_FILE_ARC + " " + TMP_FILE)
