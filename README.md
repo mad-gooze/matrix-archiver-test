@@ -21,7 +21,7 @@
 
 **Пример ввода:**
 
-	matrix.txt matrix.bin
+	pack.exe matrix.txt matrix.bin
 
 **Содержимое matrix.txt:**
 
@@ -34,7 +34,7 @@
 
 **Пример ввода:**
 
-	matrix.bin matrix.txt
+	unpack.exe matrix.bin matrix.txt
 
 **Содержимое matrix.txt (совпадает с оригинальным):**
 
